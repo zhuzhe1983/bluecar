@@ -32,7 +32,7 @@ void setup(){
   pinMode(dir2PinB, OUTPUT);
   pinMode(speedPinB, OUTPUT);
 
-  speed = 255;
+  speed = 155;
   dirFB = 0;
   dirLR = 0;
   
@@ -53,34 +53,46 @@ void loop(){
     Serial.println(ipt);
   }
   
-  if ( ipt == 'w' ){
+  if ( ipt == '8' ){
     dirFB = 1;
     Serial.println(dirFB);
   } 
   
-  if ( ipt == 's' ){
+  if ( ipt == '2' ){
     dirFB = -1;
     Serial.println(dirFB);
   }
   
-  if ( ipt == 'a') {
+  if ( ipt == '4') {
     dirLR = 1;
     Serial.println(dirLR);
   } 
   
-  if ( ipt == 'd'){
+  if ( ipt == '6'){
     dirLR = -1;
     Serial.println(dirLR);
   } 
   
   //z stop everything
-  if ( ipt == 'z' ){
+  if ( ipt == '5' ){
     dirFB = 0;
     dirLR = 0;
     Serial.println(dirFB);
     Serial.println(dirLR);
   }
   
+  if ( ipt == '9' ){
+    if(speed <= 245){
+      speed = speed + 10;
+    }
+  }
+  
+  if ( ipt == '3' ){
+    if(speed >= 10){
+      speed = speed - 10;
+    }
+  }
+ 
   //for beep function in the furture
   if ( ipt == 'b'){
     
@@ -98,7 +110,7 @@ void loop(){
     digitalWrite(dir1PinB, LOW);
     digitalWrite(dir2PinB, HIGH);
   } else  if ( 0 == dirLR ){
-    Serial.print('6');
+    //Serial.print('6');
     analogWrite(speedPinB, 0);
     digitalWrite(dir1PinB, LOW);
     digitalWrite(dir2PinB, LOW);
@@ -115,7 +127,7 @@ void loop(){
     digitalWrite(dir1PinA, LOW);
     digitalWrite(dir2PinA, HIGH);
   } else if ( 0 == dirFB ){
-    Serial.print('3');
+    //Serial.print('3');
     analogWrite(speedPinA, 0);
     digitalWrite(dir1PinA, LOW);
     digitalWrite(dir2PinA, LOW);
